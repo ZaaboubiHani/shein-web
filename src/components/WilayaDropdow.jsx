@@ -61,7 +61,7 @@ const WilayaDropdown = ({onSelect,validateAttempt}) => {
         <button onClick={() => {
             setIsWilayasOpen((prev) => !prev);
         }} className='bg-white p-2 w-full flex items-center justify-between
-        text-l tracking-wider border border-1 border-black h-11 rounded-lg
+        text-l tracking-wider border border-1 border-black h-11
         duration-300'>
             <div className={`${selectedWilaya?.arWilaya ? 'text-black' : 'text-gray-500'}`}>
                 {language === 'ar' ? selectedWilaya?.arWilaya ?? 'الولاية' : language === 'fr' ? selectedWilaya?.frWilaya ?? 'ًWilaya' : selectedWilaya?.enWilaya ?? 'ًWilaya'}
@@ -71,7 +71,7 @@ const WilayaDropdown = ({onSelect,validateAttempt}) => {
         {
             isWilayasOpen && (
                 <div className='bg-white absolute top-[50px] flex flex-col items-start p-1 w-full z-10
-border border-1 border-black h-[400px] overflow-x-hidden overflow-y-scroll rounded-lg shadow-md
+border border-1 border-black h-[400px] overflow-x-hidden overflow-y-scroll shadow-md
 '>
                     {
                         wilayasData.map((wilaya) => (<div

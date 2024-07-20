@@ -1,12 +1,16 @@
-import React, { createContext, useState, useEffect,useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 import Api from '../api/api.source';
-export const CategoryContext = createContext();
-const apiInstance = Api.instance;
 import { MenuContext } from "../contexts/MenuContext";
+
+export const CategoryContext = createContext();
+
+const apiInstance = Api.instance;
+
 const CategoryProvider = ({ children }) => {
     const [categories, setCategories] = useState([]);
-    const [category, setCategory] = useState();
-    const { menuIsOpen, handleCloseMenu } = useContext(MenuContext);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+   
+
     useEffect(() => {
         const fetchCategories = async () => {
             apiInstance.getAxios().get('/categories')
@@ -20,17 +24,29 @@ const CategoryProvider = ({ children }) => {
         fetchCategories();
     }, []);
 
-    const changeCategory = (category) => {
-        setCategory(category);
+    const toggleCategory = (category) => {
+        setSelectedCategories(prev => {
+            if (prev.some(cat => cat._id === category._id)) {
+                return prev.filter(cat => cat._id !== category._id);
+            } else {
+                return [...prev, category];
+            }
+        });
+    };
+    const clearSelectedCategories = () => {
+        setSelectedCategories([]);
     };
 
-    return <CategoryContext.Provider value={{
-        categories,
-        category,
-        changeCategory,
-    }}>
-        {children}
-    </CategoryContext.Provider>;
+    return (
+        <CategoryContext.Provider value={{
+            categories,
+            selectedCategories,
+            toggleCategory,
+            clearSelectedCategories,
+        }}>
+            {children}
+        </CategoryContext.Provider>
+    );
 };
 
 export default CategoryProvider;

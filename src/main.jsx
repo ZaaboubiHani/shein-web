@@ -2,33 +2,42 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import ProductProvider from "./contexts/ProductContext";
 import SidebarProvider from "./contexts/SidebarContext";
 import CartProvider from "./contexts/CartContext";
 import LanguageProvider from "./contexts/LanguageContext";
 import CategoryProvider from "./contexts/CategoryContext";
-import SearchProvider from "./contexts/SearchContext";
 import SnackbarProvider from "./contexts/SnackbarContext";
 import MenuProvider from "./contexts/MenuContext";
+import PosterProvider from "./contexts/PostersContext";
+import ProductProvider from "./contexts/ProductContext";
+import NumberSizeProvider from "./contexts/NumberSizeContext";
+import LetterSizeProvider from "./contexts/LetterSizeContext";
+import PriceSortProvider from "./contexts/PriceSortContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <LanguageProvider>
     <MenuProvider>
-      <CategoryProvider>
-        <SearchProvider>
-          <SidebarProvider>
-            <CartProvider>
-              <SnackbarProvider>
+      <PosterProvider>
+        <PriceSortProvider>
+          <LetterSizeProvider>
+            <NumberSizeProvider>
+              <CategoryProvider>
                 <ProductProvider>
-                  <React.StrictMode>
-                    <App />
-                  </React.StrictMode>
+                  <SidebarProvider>
+                    <CartProvider>
+                      <SnackbarProvider>
+                        <React.StrictMode>
+                          <App />
+                        </React.StrictMode>
+                      </SnackbarProvider>
+                    </CartProvider>
+                  </SidebarProvider>
                 </ProductProvider>
-              </SnackbarProvider>
-            </CartProvider>
-          </SidebarProvider>
-        </SearchProvider>
-      </CategoryProvider>
+              </CategoryProvider>
+            </NumberSizeProvider>
+          </LetterSizeProvider>
+        </PriceSortProvider>
+      </PosterProvider>
     </MenuProvider>
   </LanguageProvider>
 );

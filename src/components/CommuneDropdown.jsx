@@ -37,7 +37,7 @@ const CommuneDropdown = ({onSelect,validateAttempt,selectedWilaya}) => {
         setIsShippingTypeOpen(false);
       }}
       className="bg-white p-2 w-full flex items-center justify-between
-                        text-l tracking-wider border border-1 border-black h-11 rounded-lg
+                        text-l tracking-wider border border-1 border-black h-11
         duration-300"
     >
       <div
@@ -62,7 +62,7 @@ const CommuneDropdown = ({onSelect,validateAttempt,selectedWilaya}) => {
     {isCommunesOpen && (
       <div
         className="bg-white absolute top-[50px] flex flex-col items-start p-1 w-full z-10
-                                border border-1 border-black max-h-[400px] overflow-x-hidden overflow-y-auto rounded-lg shadow-md
+                                border border-1 border-black max-h-[400px] overflow-x-hidden overflow-y-auto shadow-md
                                 "
       >
         {data

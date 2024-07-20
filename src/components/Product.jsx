@@ -1,52 +1,50 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom/dist";
-import { BsEyeFill } from "react-icons/bs";
-import { IoClose } from "react-icons/io5";
-import { IoCheckmark } from "react-icons/io5";
 import { LanguageContext } from "../contexts/LanguageContext";
-import tshirt from '../assets/tshirt.jpg';
 const Product = ({ product }) => {
   const { language } = useContext(LanguageContext);
+  
   const {
     _id,
-   category,
-   engName,
-    price,
-    color,
+    category,
+    name,
+    buyPrice,
+    imageUrl,
+    sizes,
+    isSale,
+    salePrice,
+    new: isNew,
+    createdAt,
   } = product;
- 
+  
   return (
-    <div className="bg-white relative rounded-2xl shadow-md m-2">
-      
-    
-      <div className="border border-[#e4e4e4] h-[300px] mb-4 relative overflow-hidden group transition rounded-2xl">
+    <div className="bg-white relative shadow-md w-[180px] sm:w-[240px]">
+      <div className="border border-[#e4e4e4] h-[200px] sm:h-[300px] mb-4 relative overflow-hidden group transition ">
         <div className="w-full h-full flex justify-center items-center">
           {/* Image */}
           <div className="w-full mx-auto flex justify-center items-center">
             <Link to={`/product/${_id}`}>
               <img
-                className="max-w-[270px] m-2 group-hover:scale-110 transition duration-[2000ms] rounded-2xl"
-                src={tshirt}
+                className=" group-hover:scale-110 transition duration-[2000ms]"
+                src={imageUrl}
                 alt=""
               />
             </Link>
           </div>
         </div>
-        
       </div>
-      {/* catergory title and price */}
+      {/* catergory title and buyPrice */}
       <div className="px-4 pb-4">
-        
         <div
           className={`text-sm capitalize text-gray-500 ${
             language === "ar" ? "text-right" : "text-left"
           } `}
         >
           {language === "ar"
-            ? category.arName
+            ? category.name
             : language === "fr"
-            ? category?.frName
-            : category.engName}
+            ? category?.name
+            : category.name}
         </div>
         <Link to={`/product/${_id}`}>
           <h2
@@ -54,16 +52,33 @@ const Product = ({ product }) => {
               language === "ar" ? "text-right" : "text-left"
             }`}
           >
-            {language === "ar" ? arName : language === "fr" ? frName : engName}
+            {language === "ar" ? name : language === "fr" ? name : name}
           </h2>
         </Link>
         <div
-          className={`font-semibold ${
-            language === "ar" ? "text-right" : "text-left"
-          }`}
+          className={`flex ${
+            language === "ar" ? "flex-row-reverse" : "flex-row"
+          } `}
         >
-          {language === "ar" ? "دج " : language === "fr" ? "DA " : "DZD "}
-          {price}
+          <div
+            className={`font-semibold  ${
+              language === "ar" ? "text-right ml-4" : "text-left mr-4"
+            } 
+            ${isSale ? "line-through text-gray-400" : ""}`}
+          >
+            {language === "ar" ? "دج " : language === "fr" ? "DA " : "DZD "}
+            {buyPrice}
+          </div>
+          {isSale ? (
+            <div
+              className={`font-semibold ${
+                language === "ar" ? "text-right" : "text-left"
+              }`}
+            >
+              {language === "ar" ? "دج " : language === "fr" ? "DA " : "DZD "}
+              {salePrice}
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
