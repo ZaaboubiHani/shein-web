@@ -20,9 +20,10 @@ const Home = () => {
   return (
     <div className="flex flex-col items-center">
       <Carousel
-        className="max-w-[900px] w-full mt-32"
+        className="max-w-[900px] w-full mt-32 mb-4"
         autoPlay={true}
         infiniteLoop={true}
+        showThumbs={false}
       >
         {posters?.map((img) => (
           <div key={img._id}>
