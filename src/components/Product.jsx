@@ -3,14 +3,14 @@ import { Link } from "react-router-dom/dist";
 import { LanguageContext } from "../contexts/LanguageContext";
 const Product = ({ product }) => {
   const { language } = useContext(LanguageContext);
-  
+ 
   const {
     _id,
     category,
     name,
     buyPrice,
     imageUrl,
-    sizes,
+    size,
     isSale,
     salePrice,
     new: isNew,
@@ -52,7 +52,11 @@ const Product = ({ product }) => {
               language === "ar" ? "text-right" : "text-left"
             }`}
           >
-            {language === "ar" ? name : language === "fr" ? name : name}
+           {language === "ar"
+            ? category.name
+            : language === "fr"
+            ? category?.name
+            : category.name}{" ("+size+") "}
           </h2>
         </Link>
         <div

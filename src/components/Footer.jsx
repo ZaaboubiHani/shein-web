@@ -17,12 +17,12 @@ const Footer = () => {
       </p>
       <a href='https://www.instagram.com/sheinofficial' className='text-center flex items-center my-2'>
         <FaInstagramSquare className='mr-2' />
-        {language === 'ar' ? 'sheinofficial : إنستغرام' : language === 'fr' ? 'Instagram: arela_clothsy' : 'Instagram: arela_clothsy'}
+        {language === 'ar' ? 'sheinofficial : إنستغرام' : language === 'fr' ? 'Instagram: sheinofficial' : 'Instagram: sheinofficial'}
         
       </a>
       <a href='https://www.facebook.com/SHEINOFFICIAL' className='text-center flex items-center my-2'>
         <FaSquareFacebook className='mr-2' />
-        {language === 'ar' ? 'SHEIN : فايسبوك' : language === 'fr' ? 'Facebook: arela_clothsy' : 'Facebook: arela_clothsy'}
+        {language === 'ar' ? 'SHEIN BATNA: فايسبوك' : language === 'fr' ? 'Facebook: SHEIN BATNA' : 'Facebook: SHEIN BATNA'}
         
       </a>
       <p className='text-center my-2'>
