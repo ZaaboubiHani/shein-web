@@ -36,26 +36,19 @@ const Menu = () => {
         <FaHome className="text-2xl mr-4" />
         {language === "ar" ? "إستقبال" : language === "fr" ? "ACCUEIL" : "HOME"}
       </Link>
-      <div className="flex items-center">
-        <Link
-          to="/products"
-          onClick={() => () => handleCloseMenu()}
-          className="hover:bg-slate-100 transition-all duration-300 h-[60px] leading-[60px] px-6 flex items-center"
-        >
-          <GiLoincloth className="text-2xl mr-4" />
-          {language === "ar"
-            ? "منتجات"
-            : language === "fr"
-            ? "PRODUITS"
-            : "PRODUCTS"}
-        </Link>
-        <CategoryDropdown
-          onSelect={() => {
-            handleCloseMenu();
-            navigate("/products");
-          }}
-        />
-      </div>
+
+      <Link
+        to="/products"
+        onClick={() => handleCloseMenu()}
+        className="hover:bg-slate-100 transition-all duration-300 h-[60px] leading-[60px] px-6 flex items-center"
+      >
+        <GiLoincloth className="text-2xl mr-4" />
+        {language === "ar"
+          ? "منتجات"
+          : language === "fr"
+          ? "PRODUITS"
+          : "PRODUCTS"}
+      </Link>
       <Link
         to="/about"
         onClick={() => handleCloseMenu()}

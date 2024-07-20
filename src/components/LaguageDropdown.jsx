@@ -28,7 +28,7 @@ const LanguageDropdown = () => {
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
                 className='bg-white p-2 w-full flex items-center justify-between
-                           font-bold text-l rounded-lg tracking-wider border-4 border-transparent active:border-white
+                           font-bold text-l tracking-wider border-4 border-transparent active:border-white
                            duration-300 active:text-white'
             >
                 <div></div>
@@ -39,13 +39,13 @@ const LanguageDropdown = () => {
                 {!isOpen ? (<IoMdArrowDropdown />) : (<IoMdArrowDropup />)}
             </button>
             {isOpen && (
-                <div className='bg-white absolute top-[50px] flex flex-col items-start rounded-lg p-1 w-full shadow-lg'>
+                <div className='bg-white absolute top-[50px] flex flex-col items-start p-1 w-full shadow-lg'>
                     <div
                         onClick={() => {
                             changeLanguage('ar');
                             setIsOpen(false);
                         }}
-                        className='flex w-full items-center justify-between px-2 hover:bg-gray-300 cursor-pointer rounded-l border-l-transparent'
+                        className='flex w-full items-center justify-between px-2 hover:bg-gray-300 cursor-pointer border-l-transparent'
                     >
                         <h3>العربية</h3>
                         <img className='h-[20px]' src={DZ} alt="" />
@@ -55,7 +55,7 @@ const LanguageDropdown = () => {
                             changeLanguage('fr');
                             setIsOpen(false);
                         }}
-                        className='flex w-full items-center justify-between px-2 hover:bg-gray-300 cursor-pointer rounded-l border-l-transparent'
+                        className='flex w-full items-center justify-between px-2 hover:bg-gray-300 cursor-pointer border-l-transparent'
                     >
                         <h3>Français</h3>
                         <img className='h-[20px]' src={FR} alt="" />
@@ -65,7 +65,7 @@ const LanguageDropdown = () => {
                             changeLanguage('en');
                             setIsOpen(false);
                         }}
-                        className='flex w-full items-center justify-between px-2 hover:bg-gray-300 cursor-pointer rounded-l border-l-transparent'
+                        className='flex w-full items-center justify-between px-2 hover:bg-gray-300 cursor-pointer border-l-transparent'
                     >
                         <h3>English</h3>
                         <img className='h-[20px]' src={UK} alt="" />
