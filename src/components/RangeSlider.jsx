@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useContext } from "react";
-import "./styles/RangeSlider.css";
+
 import { NumberSizeContext } from "../contexts/NumberSizeContext";
 const RangeSlider = () => {
   const [minValue, setMinValue] = useState(30);
