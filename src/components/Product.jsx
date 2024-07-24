@@ -16,7 +16,7 @@ const Product = ({ product }) => {
     new: isNew,
     createdAt,
   } = product;
-
+console.log(product);
   return (
     <Link to={`/product/${_id}`}>
       <div className="bg-white relative shadow-md w-[180px] sm:w-[240px] rounded-lg">
