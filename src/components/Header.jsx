@@ -18,13 +18,13 @@ const Header = () => {
   fixed w-full z-30 transition-all  h-[60px]
   '>
     <div className='container mx-auto flex items-center justify-between h-full '>
-      <div className='cursor-pointer flex relative ml-4 lg:ml-16  md:hidden' onClick={() => handleOpenMenu()}>
+      <div className='cursor-pointer flex relative md:hidden' onClick={() => handleOpenMenu()}>
         <GiHamburgerMenu className='text-2xl' />
 
       </div>
       {/* logo */}
       <Link to='/'>
-        <img className='h-[60px] hidden md:block' src={Logo} alt="" />
+        <img className='h-[60px]' src={Logo} alt="" />
       </Link>
       <div className='flex items-center h-full'>
         <Link to='/' className='hover:bg-slate-100 transition-all duration-300 h-[60px] leading-[60px] px-6 hidden md:block'>
@@ -32,9 +32,6 @@ const Header = () => {
         </Link>
         <Link to='/products' className='hover:bg-slate-100 transition-all duration-300 h-[60px] leading-[60px] px-6 hidden md:block'>
           {language === 'ar' ? 'منتجات' : language === 'fr' ? 'PRODUITS' : 'PRODUCTS'}
-        </Link>
-        <Link to='/about' className='hover:bg-slate-100 transition-all duration-300 h-[60px] leading-[60px] px-6 hidden md:block'>
-          {language === 'ar' ? 'عنا' : language === 'fr' ? 'QUI SOMMES-NOUS' : 'ABOUT US'}
         </Link>
         {/* language */}
         <LanguageDropdown />
