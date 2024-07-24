@@ -9,16 +9,15 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from "react-router-dom";
 import { CommentContext } from "../contexts/CommentContext";
 import { TfiCommentAlt } from "react-icons/tfi";
+import Product from "../components/Product";
 const ProductDetails = () => {
   const { id } = useParams();
-  const { products, fetchSingleProduct } = useContext(ProductContext);
+  const { randomProducts, fetchSingleProduct,loadingProducts } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
   const { language } = useContext(LanguageContext);
   const { handleOpenSidebar, handleCloseSidebar } = useContext(SidebarContext);
   const { comments, loadingComments, fetchComments, addComment } =
     useContext(CommentContext);
-
-  const [amount, setAmount] = useState(1);
   const [commentContent, setCommentContent] = useState();
   const [product, setProduct] = useState();
 
@@ -117,10 +116,10 @@ const ProductDetails = () => {
                 }`}
               >
                 {language === "ar"
-                  ? product.arName
+                  ? product.category.name
                   : language === "fr"
-                  ? product.frName
-                  : product.engName}
+                  ? product.category.name
+                  : product.category.name}
               </h1>
               <div
                 className={`flex ${
@@ -173,49 +172,7 @@ const ProductDetails = () => {
                   : product.engDescription}
               </p>
 
-              {/* quantity */}
-              <div
-                className={`flex items-center w-[200px] h-[60px] mb-2 mr-4 ${
-                  language === "ar" ? "flex-row-reverse" : "flex-row"
-                }`}
-              >
-                {language === "ar"
-                  ? ": كمية"
-                  : language === "fr"
-                  ? "Quantité: "
-                  : "Quantity: "}
-                <div
-                  className={`flex flex-1 w-[100px] items-center h-full 
-                  border-2 border-primary text-primary font-medium mx-4 rounded-lg
-                  ${language === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"}
-                  ${language === "ar" ? "flex-row-reverse" : "flex-row"}
-                  `}
-                >
-                  {/*minus icon */}
-                  <button
-                    onClick={() => setAmount((prev) => prev - 1)}
-                    disabled={amount === 1}
-                    className="flex-1 h-full flex justify-center items-center cursor-pointer "
-                  >
-                    <IoMdRemove
-                      className={`${
-                        amount === 1 ? "text-gray-300" : "text-black"
-                      }`}
-                    />
-                  </button>
-                  {/*amount*/}
-                  <div className="h-full flex justify-center items-center px-2">
-                    {amount}
-                  </div>
-                  {/*plus icon */}
-                  <div
-                    onClick={() => setAmount((prev) => prev + 1)}
-                    className="flex-1 h-full flex justify-center items-center cursor-pointer"
-                  >
-                    <IoMdAdd />
-                  </div>
-                </div>
-              </div>
+              
               <div
                 className={`flex flex-col items-center ${
                   language === "ar" ? "lg:flex-row-reverse" : "lg:flex-row"
@@ -229,20 +186,13 @@ const ProductDetails = () => {
                       arDescription: product.arDescription,
                       frDescription: product.frDescription,
                       engDescription: product.engDescription,
-                      arName: product.arName,
-                      frName: product.frName,
-                      engName: product.engName,
+                      category:product.category,
                       isSale: product.isSale,
                       salePrice: product.salePrice,
-                      img: product.imageUrl,
+                      imageUrl: product.imageUrl,
                       size: product.size,
-                      amount: amount,
                     });
-                    setAmount(1);
-                    handleOpenSidebar();
-                    setTimeout(() => {
-                      handleCloseSidebar();
-                    }, 3000);
+                    
                   }}
                   className="bg-primary py-4 px-8 text-white mb-2 items-center lg:mx-4 rounded-lg"
                 >
@@ -261,17 +211,13 @@ const ProductDetails = () => {
                         arDescription: product.arDescription,
                         frDescription: product.frDescription,
                         engDescription: product.engDescription,
-                        arName: product.arName,
-                        frName: product.frName,
-                        engName: product.engName,
+                        category:product.category,
                         isSale: product.isSale,
                         salePrice: product.salePrice,
-                        img: product.imageUrl,
+                        imageUrl: product.imageUrl,
                         size: product.size,
                         color: product.hex,
-                        amount: amount,
                       });
-                      setAmount(1);
                       handleOpenSidebar();
                       setTimeout(() => {
                         handleCloseSidebar();
@@ -365,6 +311,29 @@ const ProductDetails = () => {
           </div>
         </div>
       </section>
+      <div
+        className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-y-0 sm:gap-y-10 gap-x-1
+      max-auto max-w-none md:mx-0 p-x-4 py-16 px-4 bg-gray-200"
+      >
+        {loadingProducts ? (
+          <section className="h-full w-full flex justify-center items-center">
+            <ClipLoader />
+          </section>
+        ) : (
+          randomProducts.map((product, index) => (
+            <div
+              key={product.id}
+              className={`relative ${
+                index % 2 === 0
+                  ? "h-[220px] sm:h-[300px]"
+                  : "h-[310px] sm:h-[370px]"
+              } flex items-center justify-center`}
+            >
+              <Product product={product} />
+            </div>
+          ))
+        )}
+      </div>
     </div>
   );
 };

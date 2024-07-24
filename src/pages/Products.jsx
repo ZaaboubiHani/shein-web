@@ -5,17 +5,19 @@ import CategoryDropdown from "../components/CategoryDropdown";
 import { LanguageContext } from "../contexts/LanguageContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import { TbMoodEmpty } from "react-icons/tb";
-import NumberSizeDropdown from "../components/NumberSizeDropdown";
-import LetterSizeDropdown from "../components/LetterSizeDropdown";
 import PriceSortToggle from "../components/PriceSortToggle";
-import RangeSlider from '../components/RangeSlider';
+import RangeSlider from "../components/RangeSlider";
 import SizeSlider from "../components/SizeSlider";
 const Products = () => {
   const { products, loadingProducts, limitReached, fetchMoreProducts } =
     useContext(ProductContext);
   const { language } = useContext(LanguageContext);
   const loadingRef = useRef(null);
+  const [showRangeSlider, setShowRangeSlider] = useState(true);
 
+  const toggleSlider = () => {
+    setShowRangeSlider((prevState) => !prevState);
+  };
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -45,17 +47,34 @@ const Products = () => {
 
   return (
     <div>
-      <section className="py-16 bg-gray-100 mt-12 ">
+      <section className="py-16 bg-gray-100 ">
         <div className="p-4 sm:p-16 mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-auto max-w-none md:mx-0 border bg-slate-50 py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-auto max-w-none md:mx-0 border bg-slate-50 p-4">
             <CategoryDropdown />
             <div className="flex items-center">
-              <RangeSlider/>
+              <button
+                onClick={toggleSlider}
+                className={`px-2 py-1 my-1 rounded ${
+                  showRangeSlider
+                    ? "bg-[#4CAF50] text-white"
+                    : "bg-white text-[#4CAF50] border border-[#4CAF50]"
+                }`}
+              >
+                {showRangeSlider ? language === "ar"
+                ? "الأحجام الرقمية"
+                : language === "fr"
+                ? "Tailles numériques"
+                : "Numeric sizes" : 
+                language === "ar"
+                ? "الأحجام الأبجدية"
+                : language === "fr"
+                ? "Tailles alphabétiques"
+                : "Alphabetic  sizes"}
+              </button>
             </div>
             <div className="flex items-center">
-              <SizeSlider/>
+              {showRangeSlider ? <RangeSlider /> : <SizeSlider />}
             </div>
-
             <PriceSortToggle />
           </div>
           {loadingProducts ? (
