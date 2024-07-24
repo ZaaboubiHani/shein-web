@@ -7,11 +7,13 @@ import { Link } from "react-router-dom";
 import { FaHome } from "react-icons/fa";
 import { GiLoincloth } from "react-icons/gi";
 import { BsFillInfoCircleFill } from "react-icons/bs";
-import CategoryDropdown from "../components/CategoryDropdown";
+import { CategoryContext } from "../contexts/CategoryContext";
+import { IoIosArrowForward } from "react-icons/io";
 const Menu = () => {
   const navigate = useNavigate();
   const { menuIsOpen, handleCloseMenu } = useContext(MenuContext);
   const { language } = useContext(LanguageContext);
+  const { categories, toggleCategory } = useContext(CategoryContext);
 
   return (
     <div
@@ -49,18 +51,35 @@ const Menu = () => {
           ? "PRODUITS"
           : "PRODUCTS"}
       </Link>
-      <Link
-        to="/about"
-        onClick={() => handleCloseMenu()}
-        className="hover:bg-slate-100 transition-all duration-300 h-[60px] leading-[60px] px-6 flex items-center"
-      >
-        <BsFillInfoCircleFill className="text-2xl mr-4" />
-        {language === "ar"
-          ? "عنا"
-          : language === "fr"
-          ? "QUI SOMMES-NOUS"
-          : "ABOUT US"}
-      </Link>
+      <div className="">
+        {categories.map((category, index) => (
+          <div key={index}>
+            <Link
+              to="/products"
+              className={`text-center flex items-center px-4 py-2 ml-8 justify-between
+              ${index % 2 == 0 ? 'bg-white' : 'bg-green-50'} hover:bg-slate-100 transition-all duration-300`}
+              onClick={() => {
+                handleCloseMenu();
+                toggleCategory(category);
+              }}
+            >
+              <div className="flex items-center">
+                <img
+                  className="w-[50px] h-[50px] object-cover border border-black rounded-full cursor-pointer mr-4"
+                  key={category.id}
+                  src={category.imageUrl}
+                  alt=""
+                />
+                {category.name}
+              </div>
+              <IoIosArrowForward />
+            </Link>
+            {index < categories.length - 1 && (
+              <div className="border border-black border-b-1 opacity-50 ml-10 " />
+            )}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

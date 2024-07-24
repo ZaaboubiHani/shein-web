@@ -48,11 +48,11 @@ const CartItem = ({ item }) => {
           {/*  item price */}
           <div className='flex-1 flex justify-around items-center'>
             {language === 'ar' ? 'دج ' : language === 'fr' ? 'DA ' : 'DZD '}
-            {parseFloat(item.price).toFixed(2)}</div>
+            {parseFloat(item.buyPrice).toFixed(2)}</div>
           {/*  final price */}
           <div className='flex-1 flex justify-end items-center text-primary font-medium'>
             {language === 'ar' ? 'دج ' : language === 'fr' ? 'DA ' : 'DZD '}
-            {parseFloat(item.price * item.amount).toFixed(2)}</div>
+            {parseFloat(item.buyPrice * item.amount).toFixed(2)}</div>
         </div>
         <div className='flex mt-2'>
           <div
@@ -69,18 +69,7 @@ const CartItem = ({ item }) => {
             }} >
             {item.size}
           </div>
-          <div
-            style={{
-              cursor: 'pointer',
-              height: '25px',
-              width: '25px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderRadius:'4px',
-              border: '1px solid black',
-              backgroundColor: item.color,
-            }} />
+         
         </div>
       </div>
     </div>

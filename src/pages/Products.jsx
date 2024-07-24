@@ -8,13 +8,11 @@ import { TbMoodEmpty } from "react-icons/tb";
 import NumberSizeDropdown from "../components/NumberSizeDropdown";
 import LetterSizeDropdown from "../components/LetterSizeDropdown";
 import PriceSortToggle from "../components/PriceSortToggle";
+import RangeSlider from '../components/RangeSlider';
+import SizeSlider from "../components/SizeSlider";
 const Products = () => {
-  const {
-    products,
-    loadingProducts,
-    limitReached,
-    fetchMoreProducts,
-  } = useContext(ProductContext);
+  const { products, loadingProducts, limitReached, fetchMoreProducts } =
+    useContext(ProductContext);
   const { language } = useContext(LanguageContext);
   const loadingRef = useRef(null);
 
@@ -48,11 +46,16 @@ const Products = () => {
   return (
     <div>
       <section className="py-16 bg-gray-100 mt-12 ">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-auto max-w-none md:mx-0">
+        <div className="p-4 sm:p-16 mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 max-auto max-w-none md:mx-0 border bg-slate-50 py-4">
             <CategoryDropdown />
-            <NumberSizeDropdown />
-            <LetterSizeDropdown />
+            <div className="flex items-center">
+              <RangeSlider/>
+            </div>
+            <div className="flex items-center">
+              <SizeSlider/>
+            </div>
+
             <PriceSortToggle />
           </div>
           {loadingProducts ? (
@@ -70,10 +73,22 @@ const Products = () => {
             </section>
           ) : (
             <div>
-              <div className="grid grid-cols-2 mt-4 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm max-auto md:max-w-none md:mx-0 ">
-                {products.map((product) => {
-                  return <Product product={product} key={product._id} />;
-                })}
+              <div
+                className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-y-0 sm:gap-y-10 gap-x-1 sm:gap-x-5
+      max-auto max-w-none md:mx-0 p-x-4 py-16 sm:px-4"
+              >
+                {products.map((product, index) => (
+                  <div
+                    key={product.id}
+                    className={`relative ${
+                      index % 2 === 0
+                        ? "h-[220px] sm:h-[300px]"
+                        : "h-[290px] sm:h-[370px]"
+                    } flex items-center justify-center`}
+                  >
+                    <Product product={product} />
+                  </div>
+                ))}
               </div>
               {!limitReached ? (
                 <div ref={loadingRef} className="text-center mt-4">

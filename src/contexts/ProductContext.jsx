@@ -55,6 +55,17 @@ const ProductProvider = ({ children }) => {
       }
     }
   };
+  const fetchSingleProduct = async (id) => {
+    try {
+      const response = await apiInstance.getAxios().get(`/products/${id}`);
+
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
   const fetchMoreProducts = async () => {
     if (page.current <= pageLimit.current && !localLoadingProducts.current) {
       page.current = page.current + 1;
@@ -145,6 +156,7 @@ const ProductProvider = ({ children }) => {
         loadingRandomProducts,
         randomProducts,
         fetchMoreProducts,
+        fetchSingleProduct,
       }}
     >
       {children}

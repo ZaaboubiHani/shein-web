@@ -15,9 +15,10 @@ import Snackbar from './components/Snackbar';
 import Menu from './components/Menu';
 import ScrollToTop from './utils/ScrollToTop';
 import Products from './pages/Products';
+import ProductDetails from './pages/ProductDetails';
 const App = () => {
   
-  return <div className='overflow-hidden'>
+  return <div>
     <Router className='relative'>
       <ScrollToTopButton/>
       <ScrollToTop/>
@@ -27,6 +28,7 @@ const App = () => {
         <Route path='/checkout' element={<Checkout />} />
         <Route path='/about' element={<AboutUs />} />
         <Route path='/products' element={<Products />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
       <Sidebar />

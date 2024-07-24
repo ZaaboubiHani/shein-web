@@ -13,6 +13,8 @@ import ProductProvider from "./contexts/ProductContext";
 import NumberSizeProvider from "./contexts/NumberSizeContext";
 import LetterSizeProvider from "./contexts/LetterSizeContext";
 import PriceSortProvider from "./contexts/PriceSortContext";
+import CommentProvider from "./contexts/CommentContext";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <LanguageProvider>
@@ -23,15 +25,17 @@ root.render(
             <NumberSizeProvider>
               <CategoryProvider>
                 <ProductProvider>
-                  <SidebarProvider>
-                    <CartProvider>
-                      <SnackbarProvider>
-                        <React.StrictMode>
-                          <App />
-                        </React.StrictMode>
-                      </SnackbarProvider>
-                    </CartProvider>
-                  </SidebarProvider>
+                  <CommentProvider>
+                    <SidebarProvider>
+                      <CartProvider>
+                        <SnackbarProvider>
+                          <React.StrictMode>
+                            <App />
+                          </React.StrictMode>
+                        </SnackbarProvider>
+                      </CartProvider>
+                    </SidebarProvider>
+                  </CommentProvider>
                 </ProductProvider>
               </CategoryProvider>
             </NumberSizeProvider>
