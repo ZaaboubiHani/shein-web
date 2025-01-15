@@ -3,7 +3,7 @@ import axios from "axios";
 class Globals {
     static apiUrl = 
     // 'http://localhost:3000'
-    "http://178.32.240.74:4040"
+    "http://5.196.32.222:5000"
     ;
 }
 
